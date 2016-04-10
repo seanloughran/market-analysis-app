@@ -1,4 +1,13 @@
-.picture {
+.productPicture {
   width: 200px;
   height: 200px;
 }
+
+progress {
+  border: 1px red solid;
+  height: 25px;
+}
+
+#hiddenSection {dispaly: none;}
+
+.finalImage {width: 100px; height: 100px;}
