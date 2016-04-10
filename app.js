@@ -5,7 +5,6 @@ var Picture = function(picSource, picNum) {
   this.picSource = picSource;
   this.picNum = picNum;
   this.voteCount = 0;
-  this.shownCount = 0;
   this.addPicture = function(placementID) {
     document.getElementById(placementID).innerHTML = "<img src="+this.picSource+" class='productPicture' id='"+this.picNum+"'>";
     document.getElementById(this.picNum).addEventListener("click", clickPhoto);
@@ -30,36 +29,49 @@ var unicorn = new Picture("Images/unicorn.jpg", 14);
 
 var picArray = [r2bag, banana, boots, chair, monster, dragon, pen, scissors, shark, babysweep, usb, watercan, wineglass, unicorn];
 
-var shownArray = []; //Will keep track of shown pictures.
-var greatestShown = 0;
+var last3shown = []; //Will keep track of shown pictures.
 
 function randomPicturePicker () { //Generates 3 random pictures
   var usedNumbers = []; //Will help keep 3 pictures different.
-  var index = 1;
+  var threeindex = 1;
 
-  while (index <= 3) {
+  if (last3shown.length>3) {
+    last3shown.splice(0, 3);
+  }
+
+  while (threeindex <= 3) {
+    console.log(last3shown);
     var randomNum = Math.floor(Math.random() * (picArray.length - 1 + 1)) + 1; //Generates random num between 1 and 14. Will adjust if more pictures added.
     var unused = true;
-
+    var previousShown = true;
 
     for (z=0; z<usedNumbers.length; z++) { //This for loop runs the usedNumbers array to check if a picture has been used before in this vote instance.
       if (usedNumbers[z] == randomNum) {
         unused = false;
       }
     }
-    if (unused) { //This code runs if the random number generated has not occured in this instance of the function.
-      for (arrIndex = 0; arrIndex<picArray.length; arrIndex++) {//This foro loop runs through the picture objects array. If a picture's assigned number matches the unused, random number, the addPicture method for that picture adds the picture to the index paragraph id.
+
+    if (last3shown.length >= 3) {
+      for (lasti=0; lasti<3; lasti++) {
+        if (randomNum == last3shown[lasti]) {
+          previousShown = false;
+        }
+      }
+    }
+
+    if (unused && previousShown) { //This code runs if the random number generated has not occured in this instance of the function.
+      last3shown.push(randomNum);
+      usedNumbers.push(randomNum);
+      for (arrIndex = 0; arrIndex<picArray.length; arrIndex++) {//This for loop runs through the picture objects array. If a picture's assigned number matches the unused, random number, the addPicture method for that picture adds the picture to the index paragraph id.
 
           var currentPic = picArray[arrIndex];
           if (currentPic.picNum == randomNum) {
-            currentPic.addPicture("picture"+index);
-            index++;
+            currentPic.addPicture("picture"+threeindex);
+            threeindex++;
           }
       }
     }
 
-    usedNumbers.push(randomNum);
-    shownArray.push(randomNum);
   }
 }
 
@@ -77,6 +89,9 @@ function displaySwitch() {
   }
 
   document.getElementById('hiddenSection').style.display = "inline-block";
+
+  document.getElementById('busPic').style.width = "13.3%";
+  document.getElementById('header').style.marginBottom = "10px";
 }
 
 function clickPhoto() {

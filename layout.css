@@ -2,11 +2,47 @@ body {
   background-color: black;
   text-align: center;
   color: white;
+  margin: 0;
 }
 
-#picture1, #picture2, #picture3 {
+#header {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 50px;
+  padding: 10px;
+}
+
+#instruct {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+#busPic {
+  width: 21.4%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#votePicDiv {
+  width: 100%;
+  max-height: 335px;
+  margin-bottom: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.votePicPara {
   display: inline-block;
-  margin: 5% 5%;
+  vertical-align: middle;
+  text-align: center;
+  width: 30%;
+}
+
+.productPicture {
+  width: 80%;
+  max-height: 300px;
 }
 
 #progressBar {width: 75%;}
@@ -14,5 +50,5 @@ body {
 figure {display: inline-block;}
 
 #progressPara {
-  height:
+
 }

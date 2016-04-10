@@ -1,6 +1,13 @@
-.productPicture {
-  width: 200px;
-  height: 200px;
+#header {
+  background-color: #99bbff;
+}
+
+#instruct {
+  background-color: #ff4dff
+}
+
+#votePicDiv {
+  background-color: white;
 }
 
 progress {
@@ -8,6 +15,6 @@ progress {
   height: 25px;
 }
 
-#hiddenSection {dispaly: none;}
+#hiddenSection {display: none;}
 
 .finalImage {width: 100px; height: 100px;}
