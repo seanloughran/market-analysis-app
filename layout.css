@@ -52,3 +52,9 @@ figure {display: inline-block;}
 #progressPara {
 
 }
+
+#chartContainer {
+  display: none;
+  width: 95%;
+  margin: 0 auto;
+}
