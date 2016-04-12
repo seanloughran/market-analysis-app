@@ -29,16 +29,23 @@ var wineglass = new Picture("Images/wine_glass.jpg", 13, "Wine Glass");
 var unicorn = new Picture("Images/unicorn.jpg", 14, "Unicorn Meat");
 
 var picArray = [r2bag, banana, boots, chair, monster, dragon, pen, scissors, shark, babysweep, usb, watercan, wineglass, unicorn];
+var clickedPicArr = [];
 
 var chart = null;
 
 function chartRender() {
+  for (ci=0; ci<picArray.length; ci++) {
+    if (picArray[ci].y>0) {
+      clickedPicArr.push(picArray[ci]);
+    }
+  }
+
   chart = new CanvasJS.Chart("chartContainer", {
     title: {text: "Picture Votes Counted"},
     data: [
       {
         type: "column",
-        dataPoints: picArray
+        dataPoints: clickedPicArr
       }
     ]
   });
@@ -98,7 +105,7 @@ function displaySwitch() {
     iniShow[is].style.display = "none";
   }
 
-  document.getElementById('chartContainer').style.display = "block";
+  document.getElementById('chartContainer').style.display = "inline-block";
 
   document.getElementById('busPic').style.width = "13.3%";
   document.getElementById('header').style.marginBottom = "10px";
@@ -123,5 +130,28 @@ function clickPhoto() {
   }
 }
 
+function reset() {
+  totalVoteCount = 0;
+  clickedPicArr = [];
+
+  var iniShow = document.getElementsByClassName('initialshow');
+  for (is=0; is<iniShow.length; is++) {
+    iniShow[is].style.display = "block";
+  }
+
+  var paraDis = document.getElementsByClassName('votePicPara');
+  for (parai=0; parai<paraDis.length; parai++) {
+    paraDis[parai].style.display = "inline-block";
+  }
+
+  document.getElementById('chartContainer').style.display = "none";
+
+  document.getElementById('busPic').style.width = "21.4%";
+  document.getElementById('header').style.marginBottom = 0;
+
+  randomPicturePicker();
+}
+
+document.getElementById('reset').addEventListener("click", reset);
 
 randomPicturePicker();
