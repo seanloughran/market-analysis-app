@@ -1,0 +1,20 @@
+#header {
+  background-color: #99bbff;
+}
+
+#instruct {
+  background-color: #ff4dff;
+}
+
+#votePicDiv {
+  background-color: white;
+}
+
+progress {
+  border: 1px red solid;
+  height: 25px;
+}
+
+#hiddenSection {display: none;}
+
+.finalImage {width: 100px; height: 100px;}

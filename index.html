@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BusMall Analysis App</title>
+  <link rel="stylesheet" type="text/css" href="layout.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <h1 id="header">BussMall Product Analysis App</h1>
+  <img id="busPic" src="images/bwbus.jpg">
+
+  <section id="initialshow">
+    <h2 id="instruct" class="initialshow">Please Click The Product You Would Prefer</h2>
+
+    <div id="votePicDiv" class="initialshow">
+      <p id="picture1" class="votePicPara initialshow"></p><p id="picture2" class="votePicPara initialshow"></p><p id="picture3" class="votePicPara initialshow"></p>
+    </div>
+
+    <div id="progressDiv" class="initialshow">
+      <progress id="progressBar" class="initialshow" value="0" max="100"></progress>
+      <p id="progessPara">Progress: <span id="votePlace"></span>/15 Votes</p>
+    </div>
+  </section>
+
+  <div id="chartContainer">
+
+
+  </div>
+  <button id="reset">Reset</button>
+
+  <script src="canvasjs.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
