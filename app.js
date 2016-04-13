@@ -112,7 +112,7 @@ function displaySwitch() {
 }
 
 function clickPhoto() {
-  if (totalVoteCount<15) {
+  if (totalVoteCount<14) {
     for (objecti=0; objecti<picArray.length; objecti++) {
       var picObject = picArray[objecti];
       if (picObject.picNum == this.id) {
@@ -148,6 +148,10 @@ function reset() {
 
   document.getElementById('busPic').style.width = "21.4%";
   document.getElementById('header').style.marginBottom = 0;
+
+  document.getElementById('progressBar').value = 0;
+  document.getElementById('progressBar').style.margin = "0 auto";
+  document.getElementById('votePlace').innerHTML = totalVoteCount;
 
   randomPicturePicker();
 }
