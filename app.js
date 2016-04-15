@@ -51,6 +51,7 @@ function chartRender() {
   });
 
   chart.render();
+
 }
 
 var last3shown = []; //Will keep track of shown pictures.
@@ -105,10 +106,12 @@ function displaySwitch() {
     iniShow[is].style.display = "none";
   }
 
-  document.getElementById('chartContainer').style.display = "inline-block";
+  document.getElementById('chartContainer').style.display = "block";
+  document.getElementById('chartContainer').style.position = "static";
 
   document.getElementById('busPic').style.width = "13.3%";
   document.getElementById('header').style.marginBottom = "10px";
+
 }
 
 function clickPhoto() {
@@ -125,8 +128,9 @@ function clickPhoto() {
     randomPicturePicker();
   }
   else { //Calls display switch on photo vote 15.
-    chartRender();
+    document.getElementById('reset').style.display = "inline-block";
     displaySwitch();
+    chartRender();
   }
 }
 
