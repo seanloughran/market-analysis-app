@@ -11,8 +11,8 @@
 }
 
 progress {
-  border: 1px red solid;
-  height: 25px;
+  height: 50px;
+  border: white solid 2px;
 }
 
 #hiddenSection {display: none;}
