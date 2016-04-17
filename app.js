@@ -1,3 +1,5 @@
+window.addEventListener("load", pullStoData);
+
 var totalVoteCount = 0;
 document.getElementById('votePlace').innerHTML = totalVoteCount;
 
@@ -6,7 +8,7 @@ var Picture = function(picSource, picNum, label) {
   this.picSource = picSource;
   this.picNum = picNum;
   this.y = 0;
-  this.addPicture = function(placementID) {
+  this.addPicture = function(placementID) { //This method
     document.getElementById(placementID).innerHTML = "<img src="+this.picSource+" class='productPicture' id='"+this.picNum+"'>";
     document.getElementById(this.picNum).addEventListener("click", clickPhoto);
     this.shownCount++;
@@ -29,7 +31,31 @@ var wineglass = new Picture("Images/wine_glass.jpg", 13, "Wine Glass");
 var unicorn = new Picture("Images/unicorn.jpg", 14, "Unicorn Meat");
 
 var picArray = [r2bag, banana, boots, chair, monster, dragon, pen, scissors, shark, babysweep, usb, watercan, wineglass, unicorn];
+
 var clickedPicArr = [];
+
+function locStoPics() {
+  var picYs = [];
+  for (pI = 0; pI<picArray.length; pI++) {
+    var cur = picArray[pI];
+    picYs.push(cur.y);
+  }
+  localStorage.setItem('storedYs', JSON.stringify(picYs));
+}
+
+function pullStoData () {
+  console.log("Loaded");
+  var check = localStorage.getItem('storedYs');
+  if (check == null) {
+    return;
+  } else {
+    unStrYs = JSON.parse(check);
+    for (yT=0; yT<picArray.length; yT++) {
+      picArray[yT].y = unStrYs[yT];
+    }
+    console.log("pic array previous update");
+  }
+}
 
 var chart = null;
 
@@ -128,6 +154,7 @@ function clickPhoto() {
     randomPicturePicker();
   }
   else { //Calls display switch on photo vote 15.
+    locStoPics();
     document.getElementById('reset').style.display = "inline-block";
     displaySwitch();
     chartRender();
