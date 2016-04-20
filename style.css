@@ -10,11 +10,6 @@
   background-color: white;
 }
 
-progress {
-  height: 50px;
-  border: white solid 2px;
-}
-
 #hiddenSection {display: none;}
 
 .finalImage {width: 100px; height: 100px;}

@@ -1,5 +1,9 @@
 window.addEventListener("load", pullStoData);
 
+document.getElementById('cleardata').addEventListener("click", function() {
+  localStorage.setItem('storedYs', null);
+})
+
 var totalVoteCount = 0; //Tracks user votes on product photos.
 document.getElementById('votePlace').innerHTML = totalVoteCount;
 
@@ -48,7 +52,7 @@ function locStoPics() {
 function pullStoData () {
   console.log("Loaded");
   var check = localStorage.getItem('storedYs');
-  if (check == null) {
+  if (check == "null") {
     return;
   } else {
     unStrYs = JSON.parse(check);
@@ -142,8 +146,12 @@ function clickPhoto() {
       }
     }
     totalVoteCount++
-    document.getElementById('progressBar').value = totalVoteCount*6.666667;
+    var bwidth = window.innerWidth;
+    var progressData = totalVoteCount*(bwidth/22);
+    //document.getElementById('progressBar').value = totalVoteCount*6.666667;
     document.getElementById('votePlace').innerHTML = totalVoteCount;
+    document.getElementById('busPic').style.position = "absolute";
+    document.getElementById('busPic').style.margin = "0 "+progressData+"px 0 0";
     randomPicturePicker();
   }
   else { //Calls display switch on photo vote 15.
@@ -165,6 +173,7 @@ function displaySwitch() {
   document.getElementById('chartContainer').style.position = "static";
 
   document.getElementById('busPic').style.width = "13.3%";
+  document.getElementById('busPic').style.margin = "0px";
   document.getElementById('header').style.marginBottom = "10px";
 
 }
@@ -187,10 +196,9 @@ function reset() {
   document.getElementById('chartContainer').style.display = "none";
 
   document.getElementById('busPic').style.width = "21.4%";
+  document.getElementById('busPic').style.margin = "0px";
   document.getElementById('header').style.marginBottom = 0;
 
-  document.getElementById('progressBar').value = 0;
-  document.getElementById('progressBar').style.margin = "0 auto";
   document.getElementById('votePlace').innerHTML = totalVoteCount;
 
   randomPicturePicker();
